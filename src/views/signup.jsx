@@ -2,7 +2,7 @@
 import  React, { useState } from 'react'
 import { Container, Form, Button} from 'react-bootstrap'
 import { Navigate, useNavigate } from 'react-router-dom'
-
+import {CurrentUser} from '../contexts/currentUser'
 
 //login page
 export default function Signup(props){
@@ -12,6 +12,7 @@ export default function Signup(props){
     let [passwordConfirm, setPasswordConfirm] = useState('')
     let [badAttempt, setBadAttempt] = useState(false)
     let [errMessage, setErrMessage] = useState('')
+    let {setCurrentUser} = useContext(CurrentUser)
     let navigate = useNavigate()
     let validate = async(e)=>{
         e.preventDefault()
@@ -29,9 +30,12 @@ export default function Signup(props){
                     updatedAt : new Date()
                 })
             })
-            let resData = await response.json()
-            console.log('new user : ', resData)
-            navigate('/dashboard')
+            if(response.status===200){
+                let resData = await response.json()
+                setCurrentUser(resData)
+                navigate('/dashboard')
+            }
+            
         } else {
             setErrMessage('No username or password.')
         }
