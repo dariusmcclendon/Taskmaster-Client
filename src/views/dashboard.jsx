@@ -2,7 +2,7 @@
 
 //imports
 import React, { useState, useEffect,useContext } from 'react'
-import {Container, Row, Col} from 'react-bootstrap'
+import {Container, Row, Col, Button} from 'react-bootstrap'
 import { Navigate, useNavigate } from 'react-router-dom'
 import TaskList from '../components/TaskList'
 import ProjectCarousel from '../components/ProjectCarousel'
@@ -59,7 +59,8 @@ export default function Dashboard(props){
     return (
         <Container fluid className='dashboard'>
             <Row className=' py-1 px-5 text-light bg-dark rounded-left'>
-                <h2>Dashboard</h2>
+                <Col><h2>Dashboard</h2></Col>
+                <Col><Button className='float-end' variant='success' onClick={()=>{navigate('/projects')}}>Create a Project</Button></Col>
             </Row>
             <Row>
                 <ProjectCarousel projects={projects} viewClick={viewClick}/>

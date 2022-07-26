@@ -13,11 +13,12 @@ export default function Header(props){
             header : {'Content-Type':'application/json'},
             credentials : 'include'
         })
-        setCurrentUser(null)
+        setCurrentUser(undefined)
         localStorage.clear()
         navigate('/login')
     }
-    if(currentUser===null){
+    console.log(currentUser)
+    if(currentUser === undefined){
         return (
             <div>
                 <Navbar bg="primary" variant='dark' expand="lg" className='border-bottom'>
@@ -28,8 +29,9 @@ export default function Header(props){
                             <Nav className='me-auto'>
                                 
                             </Nav>
-                            <Nav.Link as={Link} to='/login'>Login</Nav.Link>
-                            <Nav.Link as={Link} to='/signup'><Button>Sign Up</Button></Nav.Link>
+
+                                <Nav.Link as={Link} to='/login'><Button>Login</Button></Nav.Link>
+                                <Nav.Link as={Link} to='/signup'><Button>Sign Up</Button></Nav.Link>
                         </Navbar.Collapse>
                         
                     </Container>

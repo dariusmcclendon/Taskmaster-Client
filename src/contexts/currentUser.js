@@ -5,7 +5,7 @@ export const CurrentUser = createContext()
 
 function CurrentUserProvider({ children }) {
 
-    const [currentUser, setCurrentUser] = useState(null)
+    const [currentUser, setCurrentUser] = useState(undefined)
     
     useEffect(() => {
         //logging
@@ -14,10 +14,14 @@ function CurrentUserProvider({ children }) {
             let response = await fetch(`https://taskmaster-io-api.herokuapp.com/auth/profile`, {
                 credentials: 'include'
             })
-            let user = await response.json()
-            console.log(user)
-            setCurrentUser(user)
-            //add the user object to localStorage
+            let data = await response.json()
+            if(response.status === 404){
+                console.log(data)
+                setCurrentUser(undefined)
+            } else if(response.status === 200){
+                setCurrentUser(data)
+            }
+ 
         }
         getLoggedInUser()
     }, [])
