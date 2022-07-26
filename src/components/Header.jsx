@@ -17,7 +17,6 @@ export default function Header(props){
         localStorage.clear()
         navigate('/login')
     }
-    console.log(currentUser)
     if(currentUser === undefined){
         return (
             <div>
@@ -29,7 +28,6 @@ export default function Header(props){
                             <Nav className='me-auto'>
                                 
                             </Nav>
-
                                 <Nav.Link as={Link} to='/login'><Button>Login</Button></Nav.Link>
                                 <Nav.Link as={Link} to='/signup'><Button>Sign Up</Button></Nav.Link>
                         </Navbar.Collapse>

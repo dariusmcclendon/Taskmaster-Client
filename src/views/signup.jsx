@@ -16,7 +16,6 @@ export default function Signup(props){
     let navigate = useNavigate()
     let validate = async(e)=>{
         e.preventDefault()
-        console.log(inputUsername,inputPassword)
         if(inputUsername !== "" && inputPassword !== ""){
             let response = await fetch('https://taskmaster-io-api.herokuapp.com/auth/signup',
             {
