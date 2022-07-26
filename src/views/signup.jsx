@@ -21,6 +21,7 @@ export default function Signup(props){
             let response = await fetch('https://taskmaster-io-api.herokuapp.com/auth/signup',
             {
                 method : 'POST',
+                credentials:'include',
                 headers:{'Content-Type' : 'application/json'},
                 body : JSON.stringify({
                     username : inputUsername,
@@ -30,15 +31,17 @@ export default function Signup(props){
                     updatedAt : new Date()
                 })
             })
+            let data = await response.json()
             if(response.status===200){
-                let resData = await response.json()
-                setCurrentUser(resData)
+                
+                setCurrentUser(data)
                 navigate('/dashboard')
+            } else {
+                console.log(data)
+                setErrMessage('No username or password.')
             }
             
-        } else {
-            setErrMessage('No username or password.')
-        }
+        } 
     }
     return (
         <Container>

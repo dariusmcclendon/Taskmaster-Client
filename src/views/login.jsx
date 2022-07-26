@@ -36,6 +36,10 @@ export default function Login(props){
                 if(response.status === 200) {
                     setCurrentUser(data.user)
                     navigate('/dashboard')
+                }else if(response.status === 500){
+                    console.log(data)
+                    setErrMessage('Server error.')
+                    setBadAttempt(true)
                 }
             }
         } catch (err) {

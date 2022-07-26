@@ -11,7 +11,6 @@ function CurrentUserProvider({ children }) {
         //logging
         let getLoggedInUser = async ()=>{
             console.log('fetching user')
-            console.log(process.env.REACT_APP_DB_URL)
             let response = await fetch(`https://taskmaster-io-api.herokuapp.com/auth/profile`, {
                 credentials: 'include'
             })

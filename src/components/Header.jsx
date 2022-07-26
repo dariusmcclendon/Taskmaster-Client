@@ -1,6 +1,6 @@
 import React, {useEffect, useContext} from 'react'
 import {Nav, Navbar, Button, Container} from 'react-bootstrap'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Route, Link } from 'react-router-dom'
 import {CurrentUser} from '../contexts/currentUser'
 
 export default function Header(props){
@@ -22,14 +22,14 @@ export default function Header(props){
             <div>
                 <Navbar bg="primary" variant='dark' expand="lg" className='border-bottom'>
                     <Container fluid>
-                        <Navbar.Brand href='/'>Taskmaster</Navbar.Brand>
+                        <Navbar.Brand as={Link} to="/">Taskmaster</Navbar.Brand>
                         <Navbar.Toggle aria-controls='basic-navbar-nav'/>
                         <Navbar.Collapse id='basic-navbar-nav'>
                             <Nav className='me-auto'>
                                 
                             </Nav>
-                            <Nav.Link href='/login'>Login</Nav.Link>
-                            <Nav.Link href='/signup'><Button>Sign Up</Button></Nav.Link>
+                            <Nav.Link as={Link} to='/login'>Login</Nav.Link>
+                            <Nav.Link as={Link} to='/signup'><Button>Sign Up</Button></Nav.Link>
                         </Navbar.Collapse>
                         
                     </Container>
@@ -41,14 +41,14 @@ export default function Header(props){
             <div>
                 <Navbar bg="primary" variant='dark' expand="lg" className='border-bottom'>
                     <Container fluid >
-                        <Navbar.Brand href='/'>Taskmaster || {currentUser.display_name}</Navbar.Brand>
+                        <Navbar.Brand as={Link} to="/">Taskmaster || {currentUser.display_name}</Navbar.Brand>
                         <Navbar.Toggle aria-controls='basic-navbar-nav'/>
                         <Navbar.Collapse id='basic-navbar-nav'>
                             <Nav className='me-auto'>
-                                <Nav.Link href='/dashboard'>Home</Nav.Link>
-                                <Nav.Link href='/projects'>Projects</Nav.Link>
+                                <Nav.Link as={Link} to='/dashboard'>Home</Nav.Link>
+                                <Nav.Link as={Link} to='/projects'>Projects</Nav.Link>
                             </Nav>
-                           { currentUser ?  
+                           { currentUser != undefined ? 
                            <Button onClick={logout}>Logout</Button> : null}
                         </Navbar.Collapse>
                     </Container>

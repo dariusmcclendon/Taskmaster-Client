@@ -3,7 +3,7 @@ import {Container, Col, Spinner} from 'react-bootstrap'
 import ProjectCard from '../components/ProjectCard'
 
 export default function ProjectCarousel(props){
-
+    if(props.projects){
         let projectCards = props.projects.map((project)=>{
             return (
                 <Col lg="auto">
@@ -19,4 +19,14 @@ export default function ProjectCarousel(props){
             </Container>
         )
     
+    }else{
+        return (
+            <Container>
+                <Spinner animation='border' role="status">
+                    <span className='visually-hidden'>Loading Projects...</span>
+                </Spinner>
+            </Container>
+        )
+    }
+        
 }
